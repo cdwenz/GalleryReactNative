@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
 import { getImages } from '../api/pexels'
+import  ImageList  from '../components/ImageList'
+import axios from 'axios';
 
 const HomeScreen = () => {
 
@@ -18,7 +20,7 @@ const HomeScreen = () => {
 
     return (
         <View>
-            <Text>Home Screen</Text>
+            <ImageList photos={images}/>
         </View>
     )
 }
