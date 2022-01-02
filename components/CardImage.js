@@ -1,9 +1,11 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const CardImage = ({ image }) => {
+    const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.cardImage} onPress={()=>console.log('redirecting')}>
+    <TouchableOpacity style={styles.cardImage} onPress={()=>navigation.navigate('Image', {image})}>
       <Image
         source={{
           uri: image.src.tiny
