@@ -29,9 +29,10 @@ const HomeScreen = ({openSearch}) => {
                 style={styles.input}
                 placeholder='Search'
                 leftIcon={{ type: 'font-awesome', name: 'search', color: '#fff' }}
+                leftIconContainerStyle={styles.iconLeftSearch}
                 inputContainerStyle={styles.seachInput}
             />
-            <Button title="Search" />       
+            <Button title="Search" buttonStyle={styles.buttonSearch}/>       
         </View>}
         <View style={styles.container}>
             <Text style={styles.results}>{results}</Text>
@@ -64,15 +65,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     seachInput: {
-        backgroundColor: 'darkgray',
+        backgroundColor: '#122c32',
         borderBottomWidth: 0,
         paddingHorizontal: 4,
     },
     input: {
         color: '#fff',
     },
+    iconLeftSearch:{
+        paddingStart: 10,
+        marginRight: 7,
+    },
     buttonSearch: {
-        backgroundColor: '#85dbd9',
+        backgroundColor: '#368497',
+        marginBottom: 27,
     }
 });
 
