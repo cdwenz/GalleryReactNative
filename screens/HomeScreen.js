@@ -9,6 +9,7 @@ const HomeScreen = ({openSearch}) => {
     console.log(openSearch)
     const [images, setImages] = useState([]);
     const [results, setResults] = useState(0);
+    const [text, setText] = useState('');
 
     const loadImages = async () => {
         const res = await getImages();
@@ -21,6 +22,9 @@ const HomeScreen = ({openSearch}) => {
         loadImages();
     }, [])
 
+    const handleSearch = async (text) => {
+        await loadImages(text);
+    }
     return (
         <>
         {openSearch && 
@@ -31,8 +35,10 @@ const HomeScreen = ({openSearch}) => {
                 leftIcon={{ type: 'font-awesome', name: 'search', color: '#fff' }}
                 leftIconContainerStyle={styles.iconLeftSearch}
                 inputContainerStyle={styles.seachInput}
+                onChangeText={(text) => setText(text)}
+                value={text}
             />
-            <Button title="Search" buttonStyle={styles.buttonSearch}/>       
+            <Button title="Search" buttonStyle={styles.buttonSearch} onPress={handleSearch}/>       
         </View>}
         <View style={styles.container}>
             <Text style={styles.results}>{results}</Text>
