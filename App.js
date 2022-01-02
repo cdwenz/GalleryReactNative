@@ -5,21 +5,24 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import ImageScreen from './screens/ImageScreen';
 import Logo from './assets/sinfondo2.png';
+import { useState } from 'react';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  const [openSearch, setOpenSearch] = useState(false);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen 
           name="Home" 
-          component={HomeScreen} 
           options={{
             headerLeft: () => <Image source={Logo} style={styles.logo}/>,
             headerRight: () => 
-              <Text style={styles.search} onPress={()=>console.log('searching')}>
-                Search
+              <Text style={styles.search} onPress={()=>setOpenSearch(!openSearch)}>
+                {openSearch ? 'Close' : 'Search'}
               </Text>,
             title: 'ImgFree',
             headerTintColor: '#fff',
@@ -27,7 +30,10 @@ export default function App() {
               backgroundColor: '#2c292c',
             }
           }}
-          />
+          >
+            {(props) => <HomeScreen {...props} openSearch={openSearch} />}
+
+          </Stack.Screen>
         <Stack.Screen name="Image" component={ImageScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
