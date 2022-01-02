@@ -1,28 +1,42 @@
 import React from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
 
 const ImageScreen = ({ route }) => {
   const { image } = route.params;
   return (
-    <View>
+    <View style={styles.imageDetail}>
       <Image source={{ uri: image.src.medium, height: 350 }} />
-      <View style={{ display: "flex", flexDirection: "row" }}>
-        <Avatar
-          title={image.photographer
-            .split(" ")
-            .map((e) => e[0])
-            .join("")
-            .toUpperCase()}
-          containerStyle={{ backgroundColor: "red" }}
-          rounded
-        />
-        <Text>{image.photographer}</Text>
+      <View style={{ display: "flex" }}>
+        <View style={{ display: "flex", flexDirection: "row" }}>
+          <Avatar
+            title={image.photographer
+              .split(" ")
+              .map((e) => e[0])
+              .join("")
+              .toUpperCase()}
+            containerStyle={{ backgroundColor: "#368497" }}
+            rounded
+          />
+          <TouchableOpacity>
+            <Text>{image.photographer}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  imageDetail: {
+    backgroundColor: "#2c292c",
+    flex: 1,
+    flexDirection: "column",
+    padding: 10,
+  },
+  textPhotographer: {
+      
+  },
+});
 
 export default ImageScreen;
