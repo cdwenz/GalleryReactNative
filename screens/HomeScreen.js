@@ -29,15 +29,15 @@ const HomeScreen = ({openSearch}) => {
     const handleNext = async () => {
         const res = await axios.get(images.next_page, {
             headers: {
-                Authorization: '563492ad6f917000010000015daf5a5b7d8c4997bbbd852237296351'
+                Authorization:  process.env['API_KEY']
         }});
         console.log(res.data);
         setImages(res.data);
     }
     const handlePrev = async () => {
-        const res = await axios.get(images.next_page, {
+        const res = await axios.get(images.prev_page, {
             headers: {
-                Authorization: '563492ad6f917000010000015daf5a5b7d8c4997bbbd852237296351'
+                Authorization:  process.env['API_KEY']
         }});
         console.log(res.data);
         setImages(res.data);

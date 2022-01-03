@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import ImageScreen from './screens/ImageScreen';
-import Logo from './assets/sinfondo2.png';
+import Logo from './assets/imgFree.png';
 import { useState } from 'react';
 
 const Stack = createNativeStackNavigator();
