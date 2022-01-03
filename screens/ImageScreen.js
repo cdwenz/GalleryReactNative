@@ -8,7 +8,7 @@ const ImageScreen = ({ route }) => {
     <View style={styles.imageDetail}>
       <Image source={{ uri: image.src.medium, height: 350 }} />
       <View style={{ display: "flex" }}>
-        <View style={{ display: "flex", flexDirection: "row" }}>
+        <View style={{ display: "flex", flexDirection: "row", alignItems:'center' }}>
           <Avatar
             title={image.photographer
               .split(" ")
@@ -19,7 +19,7 @@ const ImageScreen = ({ route }) => {
             rounded
           />
           <TouchableOpacity>
-            <Text>{image.photographer}</Text>
+            <Text style={styles.textPhotographer}>{image.photographer}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -35,7 +35,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textPhotographer: {
-      
+      color: "#fff",
+      fontWeight: "bold",
+      marginStart: 5,
+      fontSize: 18,
   },
 });
 
