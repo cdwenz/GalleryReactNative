@@ -6,14 +6,13 @@ import { Input, Button } from 'react-native-elements';
 
 const HomeScreen = ({openSearch}) => {
 
-    console.log(openSearch)
     const [images, setImages] = useState([]);
     const [results, setResults] = useState(0);
     const [text, setText] = useState('');
 
     const loadImages = async (value) => {
         const res = await getImages(value);
-        console.log(res.headers);
+        // console.log(res.headers);
         await setImages(res.data.photos)
         await setResults(res.data.total_results)
     }
