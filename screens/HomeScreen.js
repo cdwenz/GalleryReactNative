@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import { getImages } from '../api/pexels';
 import  ImageList  from '../components/ImageList';
 import { Input, Button } from 'react-native-elements';
+import axios from 'axios';
 
 const HomeScreen = ({openSearch}) => {
 
@@ -13,7 +14,7 @@ const HomeScreen = ({openSearch}) => {
     const loadImages = async (value) => {
         const res = await getImages(value);
         // console.log(res.headers);
-        await setImages(res.data.photos)
+        await setImages(res.data)
         await setResults(res.data.total_results)
     }
 
@@ -24,6 +25,24 @@ const HomeScreen = ({openSearch}) => {
     const handleSearch = async () => {
         await loadImages(text);
     }
+
+    const handleNext = async () => {
+        const res = await axios.get(images.next_page, {
+            headers: {
+                Authorization: '563492ad6f917000010000015daf5a5b7d8c4997bbbd852237296351'
+        }});
+        console.log(res.data);
+        setImages(res.data);
+    }
+    const handlePrev = async () => {
+        const res = await axios.get(images.next_page, {
+            headers: {
+                Authorization: '563492ad6f917000010000015daf5a5b7d8c4997bbbd852237296351'
+        }});
+        console.log(res.data);
+        setImages(res.data);
+    }
+
     return (
         <>
         {openSearch && 
@@ -41,7 +60,11 @@ const HomeScreen = ({openSearch}) => {
         </View>}
         <View style={styles.container}>
             <Text style={styles.results}>{results}</Text>
-            <ImageList photos={images}/>
+            <ImageList photos={images.photos}/>
+            <View style={styles.buttonPages}>
+                {images?.prev_page?<Button title="<" buttonStyle={styles.buttonSearch} onPress={handlePrev}/>:null}
+                {images?.next_page?<Button title=">" buttonStyle={styles.buttonSearch} onPress={handleNext}/>:null}
+            </View>
         </View>
         </>
     )
@@ -82,7 +105,12 @@ const styles = StyleSheet.create({
     },
     buttonSearch: {
         backgroundColor: '#368497',
-        marginBottom: 27,
+        marginBottom: 57,
+        marginRight: 10,
+    },
+    buttonPages: {
+        display: 'flex',
+        flexDirection: 'row',
     }
 });
 
