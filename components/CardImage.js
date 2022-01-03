@@ -2,14 +2,14 @@ import React from "react";
 import { TouchableOpacity, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const CardImage = ({ image }) => {
+const CardImage = ({ image, photos }) => {
     const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.cardImage} onPress={()=>navigation.navigate('Image', {image})}>
+    <TouchableOpacity style={styles.cardImage} onPress={()=>navigation.navigate('Image', {image, photos})}>
       <Image
         source={{
-          uri: image.src.tiny
-            ? image.src.tiny
+          uri: image.src.large
+            ? image.src.large
             : "https://payco.link/img/default/notFound.jpg",
         }}
         style={{ width: "100%", height: 180 }}

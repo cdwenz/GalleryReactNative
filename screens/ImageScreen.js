@@ -4,13 +4,37 @@ import { Avatar } from "react-native-elements";
 import * as WebBrowser from "expo-web-browser";
 import { Button } from "react-native-elements/dist/buttons/Button";
 import ImageList from "../components/ImageList";
+import * as FileSystem from 'expo-file-system';
+import * as MediaLibrary from 'expo-media-library';
+
 
 const ImageScreen = ({ route }) => {
-  const { image } = route.params;
+  const { image, photos } = route.params;
 
   const handlePress = async () => {
     await WebBrowser.openBrowserAsync(image.photographer_url);
   };
+
+  const downloadFile = async() => {
+      try{
+          let fileUri = FileSystem.documentDirectory + image.id + ".jpg";
+          const {uri} = await FileSystem.downloadAsync(image.src.large2x, fileUri);
+          saveFile(uri);
+      }catch(error){
+          console.error(error)
+      }
+  }
+  const saveFile = async (fileUri) =>{
+    const {status} = await MediaLibrary.requestPermissionsAsync();
+    if(status === 'granted'){
+      const asset = await MediaLibrary.createAssetAsync(fileUri);
+      await MediaLibrary.createAlbumAsync('Download', asset, false);
+    }   
+  }
+  const handleDownload = async () => {
+    downloadFile();
+  }
+  
   return (
     <View style={styles.imageDetail}>
       <Image source={{ uri: image.src.medium, height: 350 }} />
@@ -44,10 +68,10 @@ const ImageScreen = ({ route }) => {
             <Text style={styles.textPhotographer}>{image.photographer}</Text>
           </TouchableOpacity>
         </View>
-        <Button title="Download" buttonStyle={{backgroundColor: '#368497'}}/>
+        <Button title="Download" buttonStyle={{backgroundColor: '#368497'}} onPress={handleDownload}/>
       </View>
       <View>
-          <ImageList />
+          <ImageList photos={photos}/>
       </View>
     </View>
   );

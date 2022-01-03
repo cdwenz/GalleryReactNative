@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'right',
         width: '100%',
-        paddingTop: 35,
     },
     searchSection:{
         backgroundColor: '#2c292c',
