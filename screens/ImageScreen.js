@@ -1,9 +1,15 @@
 import React from "react";
 import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
+import * as WebBrowser from 'expo-web-browser';
+import { Button } from "react-native-elements/dist/buttons/Button";
 
 const ImageScreen = ({ route }) => {
   const { image } = route.params;
+
+  const handlePress = async () => {
+    await WebBrowser.openBrowserAsync(image.photographer_url);
+  }
   return (
     <View style={styles.imageDetail}>
       <Image source={{ uri: image.src.medium, height: 350 }} />
@@ -18,10 +24,11 @@ const ImageScreen = ({ route }) => {
             containerStyle={{ backgroundColor: "#368497" }}
             rounded
           />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handlePress}>
             <Text style={styles.textPhotographer}>{image.photographer}</Text>
           </TouchableOpacity>
         </View>
+        <Button title='Download'/>
       </View>
     </View>
   );
