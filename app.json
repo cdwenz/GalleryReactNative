@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/imgFree2.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.cdwenz.imgfree"
     },
     "web": {
       "favicon": "./assets/imgFree2.png"
