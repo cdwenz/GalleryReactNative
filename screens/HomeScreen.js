@@ -14,8 +14,8 @@ const HomeScreen = ({openSearch}) => {
     const loadImages = async (value) => {
         const res = await getImages(value);
         // console.log(res.headers);
-        await setImages(res.data)
-        await setResults(res.data.total_results)
+        setImages(res.data)
+        setResults(res.data.total_results)
     }
 
     useEffect(() => {
@@ -29,17 +29,16 @@ const HomeScreen = ({openSearch}) => {
     const handleNext = async () => {
         const res = await axios.get(images.next_page, {
             headers: {
-                Authorization:  process.env['API_KEY']
+                Authorization: '563492ad6f917000010000015daf5a5b7d8c4997bbbd852237296351'
+
         }});
-        console.log(res.data);
         setImages(res.data);
     }
     const handlePrev = async () => {
         const res = await axios.get(images.prev_page, {
             headers: {
-                Authorization:  process.env['API_KEY']
+                Authorization:  '563492ad6f917000010000015daf5a5b7d8c4997bbbd852237296351'
         }});
-        console.log(res.data);
         setImages(res.data);
     }
 
@@ -61,9 +60,9 @@ const HomeScreen = ({openSearch}) => {
         <View style={styles.container}>
             <Text style={styles.results}>{results}</Text>
             <ImageList photos={images.photos}/>
-            <View style={styles.buttonPages}>
-                {images?.prev_page?<Button title="<" buttonStyle={styles.buttonSearch} onPress={handlePrev}/>:null}
-                {images?.next_page?<Button title=">" buttonStyle={styles.buttonSearch} onPress={handleNext}/>:null}
+            <View style={styles.viewPages}>
+                {images?.prev_page?<Button title="<" buttonStyle={styles.buttonPages} onPress={handlePrev}/>:null}
+                {images?.next_page?<Button title=">" buttonStyle={styles.buttonPages} onPress={handleNext}/>:null}
             </View>
         </View>
         </>
@@ -81,6 +80,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'right',
         width: '100%',
+        padding: 10,
     },
     searchSection:{
         backgroundColor: '#2c292c',
@@ -105,10 +105,14 @@ const styles = StyleSheet.create({
     },
     buttonSearch: {
         backgroundColor: '#368497',
+        marginBottom: 27,
+    },
+    buttonPages:{
+        backgroundColor: '#368497',
         marginBottom: 57,
         marginRight: 10,
     },
-    buttonPages: {
+    viewPages: {
         display: 'flex',
         flexDirection: 'row',
     }

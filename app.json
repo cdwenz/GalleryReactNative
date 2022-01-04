@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "react-native-gallery",
-    "slug": "react-native-gallery",
+    "name": "ImgFree",
+    "slug": "imgfree",
+    "description": "Descarga imagenes libres de derecho de autor",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/imgFree2.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splashImg.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/imgFree2.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/imgFree2.png"
     }
   }
 }
